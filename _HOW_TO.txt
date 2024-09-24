@@ -1,0 +1,18 @@
+#
+# step to consider
+#
+
+# create and activate virtual environment
+cmd> python -m venv .venv
+cmd> venv\Scripts\activate
+
+# install required packages
+cmd> pip install flask
+cmd> pip install requests
+
+# tell VS Code to utilize virtual environment
+# when debugging
+VS Code: Befehlspalette 
+    > "Python: s(elect Interpreter) " 
+    > ".\venv\Scripts\Python.exe" wählen
+

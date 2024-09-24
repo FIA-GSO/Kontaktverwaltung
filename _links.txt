@@ -1,0 +1,52 @@
+﻿
+python:
+    tutorial: 
+        https://docs.python.org/3.10/
+        https://www.w3schools.com/python
+        https://www.pythontutorial.net/
+    book:
+        https://openbook.rheinwerk-verlag.de/python/
+    decorator: 
+        https://www.machinelearningplus.com/python/decorators-in-python-how-to-enhance-functions-without-changing-the-code/
+        https://www.programiz.com/python-programming/decorator
+    wsgi: 
+        https://de.wikipedia.org/wiki/Web_Server_Gateway_Interface
+        https://medium.com/analytics-vidhya/what-is-wsgi-web-server-gateway-interface-ed2d290449e
+    venv: 
+        https://docs.python.org/3/library/venv.html
+        https://realpython.com/python-virtual-environments-a-primer/
+    docstrings:
+        https://www.programiz.com/python-programming/docstrings
+    buch:
+        https://www.amazon.de/Effective-Python-Specific-Software-Development
+        https://www.amazon.de/s?k=Architecture+Patterns+with+Python
+    rest:
+        https://realpython.com/api-integration-in-python/
+    serialization:
+        https://stackoverflow.com/questions/3768895/how-to-make-a-class-json-serializable
+    uuid:
+        https://stackoverflow.com/questions/534839/how-to-create-a-guid-uuid-in-python
+    file:
+        https://www.pythontutorial.net/python-basics/python-check-if-file-exists/
+        https://www.pythontutorial.net/python-basics/python-delete-file/        
+    loop:
+        https://www.pythonmorsels.com/looping-over-multiple-iterables/
+    arguments:
+        https://www.delftstack.com/de/howto/python/python-optional-arguments-optional-parameters-python/
+flask:
+    quickstart: 
+        https://flask.palletsprojects.com/en/2.2.x/quickstart/#a-minimal-application
+    json:
+        https://flask.palletsprojects.com/en/2.2.x/api/#module-flask.json
+    buch:
+        https://www.amazon.de/Flask-Web-Development-Developing-Applications
+    tutorials:
+        https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask
+    post:
+        https://stackabuse.com/how-to-get-and-parse-http-post-body-in-flask-json-and-form-data/
+vscode 
+    venv: 
+        https://code.visualstudio.com/docs/python/environments
+    debug flask app:
+        https://towardsdatascience.com/how-to-debug-flask-applications-in-vs-code-c65c9bdbef21
+        

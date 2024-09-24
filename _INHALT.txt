@@ -1,0 +1,43 @@
+#
+# f.folkmann@gso.schule.koeln, 2022
+#
+# Kontaktverwaltung mit Python Flask
+#
+
+_links.txt:
+    Links, die beim Lernen und Entwickeln hilfreich waren
+
+contact.py:
+    Hier ist die Kontakt-Datenklasse definiert
+
+contact_svc.py:
+    Dies ist eine Kontaktverwaltung basierend
+    auf Servicemethoden ohne UI.
+    Sie kann im Server oder lokal genutzt werden.
+    RUN TEST: "Python contact_svc.py"
+
+contact_api.py:
+    Dies ist ein Kontakt-API Server, 
+    der 'contact_svc.py' im Server nutzt
+    START SERVER: "Python contact_api.py"
+    
+contact_client.py:
+    Dies ist ein Kontakt-API Client, 
+    der über 'contact_api.py' die Funktionen 
+    von 'contact_svc.py' im Server remote anspricht
+    RUN TEST: "Python contact_client.py"
+
+contact_app.py:
+    Dies ist eine menügeführte Konsolenoberfläche,
+    die konfigurativ entweder lokal oder über
+    die C/S strecke die Kontaktverwaltung nutzt.
+    CONFIGURE: lokal or remote mode in row 8
+    RUN UI: "Python contact_app.py"
+
+data:
+    Wird von 'contact_svc.py' erzeugt, um
+    die Kontaktdatensätze zu speichern
+
+venv:
+    Konfiguration des virtuellen
+    Environment
