@@ -3,62 +3,96 @@
 #
 """contact manager functions"""
 from contact import Contact
-import os
+from models import Session, ContactModel
 import uuid
 
-def data_dir():
-    """contacts data directory"""
-    return "data"
-
-# create data directory if not exist
-os.makedirs(data_dir(), exist_ok=True)
 
 def create_uuid():
     """create a universal unique identifier"""
     return str(uuid.uuid4())
 
-def contact_file_name(uuid):
-    """get contact filename by uuid"""
-    return f"{data_dir()}/{uuid}.csv"
 
 def get_contact(uuid):
     """get contact by uuid"""
-    print('SVC TO DO: get_contact()')
-    return Contact('Max', 'Muster')
+    session = Session()
+    contact_model = session.query(ContactModel).filter_by(uuid=uuid).first()
+    session.close()
 
-def get_contacts(patt = ""):
+    if contact_model is None:
+        return None
+
+    return Contact(contact_model.firstname, contact_model.lastname)
+
+
+def get_contacts(patt=""):
     """get contacts optionally filtered by patt"""
+    session = Session()
+    query = session.query(ContactModel)
+
+    if patt:
+        query = query.filter(
+            (ContactModel.firstname.like(f'%{patt}%')) |
+            (ContactModel.lastname.like(f'%{patt}%'))
+        )
+
     contacts = {}
-    print('SVC TO DO: get_contacts()')
-    contacts[str(uuid.uuid4())] = Contact('Mia', 'Muster')
-    contacts[str(uuid.uuid4())] = Contact('Kia', 'Klabuster')
+    for contact_model in query.all():
+        contact = Contact(contact_model.firstname, contact_model.lastname)
+        contacts[contact_model.uuid] = contact
+
+    session.close()
     return contacts
 
 
-def add_contact(contact):
-    """add contact under new individual uuid"""    
-    uuid = create_uuid()
-    print('SVC TO DO: add_contact()')
-    return uuid
-
 def save_contact(uuid, contact):
-    """saves contact under given uuid"""
-    print('SVC TO DO: save_contact()')
-    pass
+    """save contact to database"""
+    session = Session()
+    contact_model = ContactModel(
+        uuid=uuid,
+        firstname=contact.firstname,
+        lastname=contact.lastname
+    )
+
+    existing = session.query(ContactModel).filter_by(uuid=uuid).first()
+    if existing:
+        existing.firstname = contact.firstname
+        existing.lastname = contact.lastname
+    else:
+        session.add(contact_model)
+
+    session.commit()
+    session.close()
+
 
 def delete_contact(uuid):
     """delete contact under given uuid"""
-    print('SVC TO DO: delete_contact()')
-    return True
+    session = Session()
+    contact = session.query(ContactModel).filter_by(uuid=uuid).first()
+    if contact:
+        session.delete(contact)
+        session.commit()
+        session.close()
+        return True
+    session.close()
+    return False
+
+
+def add_contact(contact):
+    """add contact under new individual uuid"""
+    uuid = create_uuid()
+    save_contact(uuid, contact)
+    return uuid
+
 
 if __name__ == "__main__":
-    #test code here
-    if True:
-        save_contact(create_uuid(), Contact("Hans", "Glück"))
-        save_contact(create_uuid(), Contact("Erna", "Effel"))
-        id = add_contact(Contact("Zorro", "Held"))
-        print(get_contact(id))
-        delete_contact(id)
-        contacts = get_contacts()
-        for uuid in contacts:
-            print(uuid, contacts[uuid])
+    # Test code here
+    contact1 = Contact("Hans", "Glück")
+    contact2 = Contact("Erna", "Effel")
+    id1 = add_contact(contact1)
+    id2 = add_contact(contact2)
+    print(get_contact(id1))
+    print(get_contact(id2))
+    delete_contact(id1)
+    contacts = get_contacts()
+    for uuid in contacts:
+        print(uuid, contacts[uuid])
